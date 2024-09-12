@@ -5,6 +5,7 @@ import { lusitana } from '@/app/ui/fonts'
 
 import { fetchRevenue, fetchLatestInvoices, fetchCardData } from '@/app/lib/data'
 import { Suspense } from 'react';
+import { RevenueChartSkeleton } from '../ui/skeletons';
  
 async function Page(){
   const latestInvoices = await fetchLatestInvoices();  // 3 seg
@@ -28,7 +29,7 @@ async function Page(){
         />
       </div>
       <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
-        <Suspense fallback={<div>Cargando...</div>}>
+        <Suspense fallback={<RevenueChartSkeleton/>}>
           <RevenueChart />
         </Suspense>
         <LatestInvoices latestInvoices={latestInvoices} />
