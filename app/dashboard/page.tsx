@@ -4,9 +4,9 @@ import LatestInvoices from '@/app/ui/dashboard/latest-invoices';
 import { lusitana } from '@/app/ui/fonts'
 
 import { fetchRevenue, fetchLatestInvoices, fetchCardData } from '@/app/lib/data'
+import { Suspense } from 'react';
  
 async function Page(){
-  const revenue = await fetchRevenue();                // 2 seg
   const latestInvoices = await fetchLatestInvoices();  // 3 seg
                                                        // 5 segs TOTAL!!!
 
@@ -28,7 +28,9 @@ async function Page(){
         />
       </div>
       <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
-        <RevenueChart revenue={revenue}  />
+        <Suspense fallback={<div>Cargando...</div>}>
+          <RevenueChart />
+        </Suspense>
         <LatestInvoices latestInvoices={latestInvoices} />
       </div>
     </main>
