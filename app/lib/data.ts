@@ -28,6 +28,17 @@ export async function fetchRevenue() {
   }
 }
 
+export async function fetchTotalInvoices() {
+  try {
+    const invoiceCountPromise = await sql`SELECT COUNT(*) FROM invoices`;
+
+    return invoiceCountPromise;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch total invoices data.');
+  }
+}
+
 export async function fetchLatestInvoices() {
   try {
     const data = await sql<LatestInvoiceRaw>`
