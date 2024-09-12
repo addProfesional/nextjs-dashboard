@@ -1,3 +1,4 @@
+'use client';       //si no se aplica en el layout, dará error en la consola
 import SideNav from '@/app/ui/dashboard/sidenav';
 
 function LayoutDashboard ({ children } : { children: React.ReactNode }) {
